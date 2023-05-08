@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div>span {
+            width: 200px;
+            height: 60px;
+            background-color: cyan;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .done {
+            text-decoration: line-through;
+        }
+    </style>
+    <script type="module" src="./main.js"></script>
+
+</head>
+
+<body>
+    <h1>Hello Javascript - Todo App</h1>
+    <div style="display: flex;flex-direction: column;" id="tasks">
+
+    </div>
+</body>
+<script>
+    let tasks = [
+        {
+            name: "Task 1",
+            deadline: "2h",
+            status: true
+        },
+        {
+            name: "Task 2",
+            deadline: "2h",
+            status: false
+        },
+        {
+            name: "Task 3",
+            deadline: "2h",
+            status: false
+        },
+    ]
+
+    const done = (e)  => {
+        let tElement = dom.getElementById("task-" + e.target.id)
+
+        if(e.target.checked) {
+            tElement.classList.add("done")
+        }else{
+            tElement.classList.remove("done")
+        }
+    }
+
+    const dom = this.document;
+
+    let tContainerElement = dom.getElementById("tasks");
+
+    let dTaskList = tasks.map((item, idx) => {
+        let tElement = dom.createElement("span")
+        tElement.innerHTML = `${idx + 1} Nhiem vu: ${item.name} - ${item.deadline}`
+        tElement.id = "task-" + idx
+        let cBoxElement = dom.createElement("input")
+        cBoxElement.id = idx
+        cBoxElement.addEventListener("change", done)
+        cBoxElement.type = "checkbox"
+
+        tElement.appendChild(cBoxElement)
+
+        return tElement;
+    })
+
+    dTaskList.forEach(element => {
+        tContainerElement.appendChild(element);
+    });
+
+
+
+</script>
+<script>
+
+</script>
+
+</html>
